@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class myarray
+{	private:
+		int size;
+		int *arr;
+		
+	public:
+		myarray(int s)
+		{
+			size=s;
+			arr=new int[size];
+			
+		}
+		void fill()
+		{
+			for(int i=0;i<size;i++)
+			{
+				cin>>arr[i];
+				
+				
+			}
+		}
+		void display()
+		{
+			for(int i=0;i<size;i++)
+			{
+				cout<<arr[i]<<" ";
+				
+			}
+			
+		}
+		int linearSearch(int ent)
+		{
+			for(int i=0;i<size;i++)
+			{
+				if(arr[i]==ent)
+				   return i;
+			}
+			return -1;
+		}
+		
+		
+		
+	
+};
+
+int main()
+{   int n;
+    cout<<" Enter array size ";
+    cin>>n;
+	myarray m1(n);
+	m1.fill();
+	cout<<endl;
+	m1.display();
+	cout<<endl;
+    int location= m1.linearSearch(15);
+    cout<<"Location found at :"<<location+1;
+	
+	
+	
+	
+	
+	return 0;
+}
