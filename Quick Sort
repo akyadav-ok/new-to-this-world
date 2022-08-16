@@ -1,0 +1,98 @@
+#include <iostream>
+using namespace std;
+
+class myarray
+{	private:
+		int size;
+		int *arr;
+		
+	public:
+		myarray(int s)
+		{
+			size=s;
+			arr=new int[size];
+			
+		}
+		int fill()
+		{   
+		   cout<<"Enter Array Elements :"<<endl;
+			for(int i=0;i<size;i++)
+			{
+				cin>>arr[i];
+				
+				
+			}
+			return size-1;
+		}
+		void display()
+		{   cout<<"Array is : ";
+			for(int i=0;i<size;i++)
+			{
+				cout<<arr[i]<<" ";
+				
+			}
+			
+		}
+	    
+		void Qs(int s, int l)
+		{
+			if(s>=l)
+				return ;
+			
+			int p=position(s,l);
+			Qs(s,p-1);
+			Qs(p+1,l);
+			
+			
+		}
+		
+		void print(int l)
+		{   cout<<endl;
+			for(int i=0;i<=l;i++)
+			{
+				cout<<arr[i]<<" ";
+			}
+		}
+		
+		int position(int s, int l)
+		{
+			int temp=s;
+			int star;
+			
+			for(int i=s;i<=l-1; i++)
+			{
+				if(arr[i]<=arr[l])
+				{
+					star=arr[i];
+					arr[i]=arr[temp];
+					arr[temp]=star;
+					temp++;
+				}
+			}
+			star=arr[temp];
+			arr[temp]=arr[l];
+			arr[l]=star;
+			
+			return temp;
+			
+		}
+	 
+		
+	
+};
+
+int main()
+{   int n;
+    cout<<" Enter array size ";
+    cin>>n;
+	myarray m1(n);
+	int s=0;
+	int l= m1.fill();
+	m1.display();
+	m1.Qs(s,l);
+	m1.print(l);
+	
+	
+	
+	
+}
