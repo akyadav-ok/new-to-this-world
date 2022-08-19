@@ -34,7 +34,7 @@ class myarray
 			
 		}
 		int linearSearch(int ent)
-		{
+		{   
 			for(int i=0;i<size;i++)
 			{
 				if(arr[i]==ent)
@@ -44,7 +44,7 @@ class myarray
 		}
 		
 		void bubble_sort()
-		{
+		{   
 			for (int j=0;j<size-1;j++)
 			{
 			
@@ -67,8 +67,8 @@ class myarray
 			}
 			
 		}
-		int binSearch(int ent,int b,int l )
-		{        
+		int binSearch_Recursive(int ent,int b,int l )
+		{       
 		    if(b<=l){   
 		        int big=b;int last=l;
 		    
@@ -82,11 +82,11 @@ class myarray
 				if (arr[mid]>ent)
 			     {
 			     	
-			     	return binSearch(ent,b,mid-1);
+			     	return binSearch_Recursive(ent,b,mid-1);
 				 }
 				if (arr[mid]<ent)
 				 {
-					return binSearch(ent,mid+1,l);	
+					return binSearch_Recursive(ent,mid+1,l);	
 				 } 	
 			}
 		    else 
@@ -97,8 +97,28 @@ class myarray
 			 }
 		   				
 		}
+		
+		
+		int binSearch_Iterative(int ent,int b,int l )
+		{   
+			int mid;     
+		    while (b<=l)
+		    { 	mid=(b+l)/2;
+		    	if(ent== arr[mid])
+		    		return mid;
+		    	if (ent<arr[mid])
+		    		l=mid-1;
+		    	else 
+		    		b=mid+1;
+		    	
+			}
+		   				
+		}
+		
+		
 		void selection_sort()
-	    {  int min_index;
+	    {  
+			int min_index;
 	    	for (int i =0;i<size;i++)
 	    	{  
 	    	    min_index=i;
@@ -108,22 +128,23 @@ class myarray
 	    			    
 	    			     min_index=j;
 	    			
-					int then=arr[min_index];
-					arr[min_index]=arr[i];
-					arr[i]=then;
+					
 					     
 				}
+				int then=arr[min_index];
+					arr[min_index]=arr[i];
+					arr[i]=then;
 			}
 			cout<<endl;
 			cout<<"Sorted Array is :: ";
-			for (int k=0;k<size;k++)
+			for (int n=0;n<size;n++)
 			{ 
-				cout<<arr[k]<<" ";
+				cout<<arr[n]<<" ";
 				
 			}
 		}
 		void insertion_sort()
-	    {   
+	       {   
 	    	int k,j;
 	    	for (int i=1;i<size;i++)
 	    	{
@@ -146,7 +167,7 @@ class myarray
 	    
 		}
 		void merge_sort(int s,int l)
-	    {   
+	        {   
 	    	if (s>=l)
 	    	    return ;
 	    	int m=(s+l)/2;
@@ -186,15 +207,12 @@ class myarray
 		
 		
 			cout<<endl;
-			for(int p=0;p<size;p++)
-		   {
-			cout<<arr[p]<<" ";
-		   }
+			
 		
 		}
 		
-			void Qs(int s, int l)
-		{
+		void Qs(int s, int l)
+		{   
 			if(s>=l)
 				return ;
 			
@@ -226,7 +244,13 @@ class myarray
 			return temp;
 			
 		}
-		
+		void print()
+		{
+		   for(int p=0;p<size;p++)
+		   {
+			cout<<arr[p]<<" ";
+		   }
+		}
 	
 };
 
@@ -252,31 +276,51 @@ int main()
 	cin >>ch;
 	cout<<endl;
 	 if (ch==1)
-	 {
+	 {  cout<<"Bubble Sort "<<endl;
 	 	m1.bubble_sort();
 	 }
 	 if (ch==2)
-	 {
+	 {  cout<<"Selection Sort "<<endl;
 	 	m1.selection_sort();
 	 }
 	 if (ch==3)
-	 {
-	 	 m1.insertion_sort();
+	 {  cout<<"Insertion Sort "<<endl;
+	 	m1.insertion_sort();
 	 	
 	 }
 	 int k;
 	 if (ch==4)
-	 {	cout<<"Enter Element to be searched :";
+	 
+	 {	cout<<"Binary Search "<<endl;
+	 	cout<<"Enter Element to be searched :";
 		cin>>k;
 		cout<<endl;
-    	cout<<"Element to be searched : k :-  "<<k<<endl;
-	 	 
-	 	int z= m1.binSearch(k,0,last);
-	 	cout<<"Element Found at Index :  "<<z<<endl;
+	    int h;
+  		cout<<"Enter 1. for Recursive Approach . "<<endl ;
+  		cout<<"Enter 2. for Iterative Approach . "<<endl ;
+  		cout<<" h : " ;
+  		cin>> h;
+  
+  		if ( h ==1 )
+  		{    
+  		     cout<<"Element to be searched : k :-  "<<k<<endl;
+   			 int z=m1.binSearch_Recursive ( k , 0, last );
+    			
+    		cout<<"Element Found at Index :  "<<z<<endl;
+  		}
+ 		if ( h == 2)
+  		{    cout<<"Element to be searched : k :-  "<<k<<endl;
+   			 int z= m1.binSearch_Iterative ( k, 0 , last );
+   			 cout<<"Element Found at Index :  "<<z<<endl;
+    		
+  			}
+  		if ( h != 1 && h!= 2 )
+      		cout<<" Invalid Input !!! "<<endl; 
+	  		  
 	 	
 	 }
 	 if (ch==5)
-	 {	
+	 {	cout<<"Linear Search "<<endl;
 	 	cout<<"Enter Element to be searched :";
 		cin>>k;
 		cout<<endl;
@@ -286,26 +330,24 @@ int main()
 	 }
 	 int s=0;
 	 if (ch==6)
-	 {
+	 {  cout<<"Merge Sort  "<<endl;
 	 	m1.merge_sort(0,last);
+	 	m1.print();
 	 }
 	 if (ch==7)
-	 {
+	 {  cout<<"Quick Sort "<<endl;
 	 	m1.Qs(0,last);
+	 	m1.print();
 	 }
 	 if (ch>=8)
 	 {
 	 	cout<<"Invalid Choice !! "<<endl;
 	 }
-    char h;
-	cout<<"Want to Continue : (y/n) : ";
+    int h;
+    cout<<endl;
+	cout<<"Want to Continue : (y=0/n=1) : ";
 	cin>>h;
-	if (ch=='y')
+	if (h==0)
 	    goto x;
-	
-	
-	
-	
-	
-	
+		
 }
