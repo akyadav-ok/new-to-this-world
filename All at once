@@ -80,7 +80,7 @@ class myarray
 					
 				}
 				if (arr[mid]>ent)
-			     {
+			        {
 			     	
 			     	return binSearch_Recursive(ent,b,mid-1);
 				 }
@@ -130,7 +130,7 @@ class myarray
 	    			
 					
 					     
-				}
+				
 				int then=arr[min_index];
 					arr[min_index]=arr[i];
 					arr[i]=then;
