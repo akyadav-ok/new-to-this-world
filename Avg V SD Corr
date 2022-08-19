@@ -1,0 +1,214 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class myarray
+{	private:
+		int size;
+		int *arr, *ptr;
+		
+	public:
+		myarray(int s)
+		{
+			size=s;
+			arr=new int[size];
+			ptr=new int[size];
+		}
+		int fill(int d)
+		{   
+		   cout<<"Enter Array Elements :"<<endl;
+		   if(d==0)
+			for(int i=0;i<size;i++)
+			{   
+			    cout<<"arr["<<i<<"] :";
+				cin>>arr[i];
+				cout<<endl;
+				
+			}
+			if(d!=0)
+			{
+				for(int i=0;i<size;i++)
+				{   
+			    cout<<"ptr["<<i<<"] :";
+				cin>>ptr[i];
+				cout<<endl;
+				
+				}
+			}
+			
+			//return size-1;
+		}
+		void display(int d)
+		{   cout<<"Array is : ";
+		   if(d==0){   cout<<" arr : ";
+		   	for(int i=0;i<size;i++)
+			{
+				cout<<arr[i]<<" ";
+				
+			}
+		   	
+		   }
+			
+			if(d!=0)
+			{   cout<<"ptr :";
+				for(int i=0;i<size;i++)
+				{   
+			    
+				cout<<ptr[i]<<" ";
+				
+				
+				}
+			}
+			
+		}
+	 
+	    double avg( ) // mean
+	    {
+	       float sum=0;
+		   for (int i =0 ;i<size;i++)
+		   {
+		   	sum +=arr[i];
+		   	
+			   }
+			   return  sum/size ;	
+		   
+		}
+		double variance(double m)
+		{
+			double sqdiff =0;
+			for (int j=0;j<size;j++)
+			{
+				sqdiff+=pow((arr[j]-m),2);
+			}
+			return sqdiff/(size);
+		}
+		double standard_Deviation()
+		{   double l=avg();
+			return  sqrt(variance(l));
+		}
+		
+		double correlation(double m)
+		{   
+			double xarr=sum_arr(m);
+			double yptr=sum_ptr(m);
+			double z=xarr+yptr;
+			
+			double w=sqr_sumX( m);
+			double q=sqr_sumY( m);
+			
+			double corr=(z)/sqrt((w*q));
+			
+			
+			return corr;
+			
+		}
+		double sqr_sumX(double m)
+		{
+			double sqr_sumX =0;
+			for (int j=0;j<size;j++)
+			{
+				sqr_sumX+=pow((arr[j]-m),2);
+			}
+			return sqr_sumX;
+		}
+		double sqr_sumY(double m)
+		{
+			double sqr_sumY =0;
+			for (int j=0;j<size;j++)
+			{
+				sqr_sumY+=pow((arr[j]-m),2);
+			}
+			return sqr_sumY;
+		}
+		
+		
+		double sum_arr(int m)
+		{  double sum=0;
+		    for (int j=0;j<size;j++)
+			{
+				sum+=(arr[j]-m);
+			}
+			return  sum;
+			
+		}
+		double sum_ptr(int m)
+		{  double sum=0;
+		    for (int j=0;j<size;j++)
+			{
+				sum+=(ptr[j]-m);
+			}
+			return  sum;
+			
+		}
+	
+};
+
+		
+
+int main()
+{   
+    
+    int d=0;
+    
+    int n;
+    cout<<" Enter array size ";
+    cin>>n;
+    
+	myarray m1(n);
+	int last=m1.fill(d);
+	cout<<endl;
+	m1.display(d);
+	cout<<endl;
+	
+	int in;
+	x:
+	y:
+	cout<<"Enter 1.Average  "<<endl;
+	cout<<"Enter 2.Variance "<<endl;
+	cout<<"Enter 3.Standard Deviation  "<<endl;
+	cout<<"Enter 4.Coefficient Of Correlation  "<<endl;
+	cout<<"in : ";
+	cin>>in;
+	
+	
+	if(in==1)
+	{   
+		double m= m1.avg();
+		cout<<"Average is :"<<m<<endl;
+	}
+    if(in ==2)
+    {   double m= m1.avg();
+    	double v=m1.variance(m);
+    	cout<<"Variance is :  "<<v<<endl;
+	}
+	if(in == 3 )
+	{
+		double sd=m1.standard_Deviation();
+		cout<<"Standard Deviation is :"<<sd<<endl;
+		
+	}
+	if(in==4)
+	{   
+    	double m=m1.avg();
+    	d=1;
+    	m1.fill(d);
+    	m1.display(d);
+		double corr=m1.correlation(m);
+	    cout<<"Coefficient of Correlation is :"<<corr<<endl;
+	}
+	if(in!=1 && in!=2 && in!=3 && in!=4 )
+	{
+		cout<<"Invalid Input !! "<<endl;
+		goto x;
+	}
+	
+	int h;
+	cout<<"Want to Continue : (y=0/n=1) h:";
+	cin>>h;
+	if(h==0)
+	{
+		goto y;
+	}
+
+	
+}
