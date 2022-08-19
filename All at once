@@ -227,7 +227,7 @@ class myarray
 			int temp=s;
 			int star;
 			
-			for(int i=s;i<=l-1; i++)
+			for(int i=s;i<=l-1; i++) 
 			{
 				if(arr[i]<=arr[l])
 				{
