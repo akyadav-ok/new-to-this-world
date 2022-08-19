@@ -1,0 +1,134 @@
+
+#include <iostream>
+
+using namespace std;
+
+
+
+class Stack {
+	int capacity,top;
+	int *arr;
+    
+public:
+	 
+
+	Stack(int cap)
+	 {  capacity=cap;
+	    arr= new int [capacity];
+	 	top = -1; 
+	 }
+	 
+	
+	
+	
+	
+	
+	int peek()
+	{
+		if (top < 0) {
+		cout << "Stack is Empty";
+		return 0;
+		}
+		else {
+		int x = arr[top];
+		return x;
+		}
+	}
+	bool push()
+	{   
+		if (top >= (capacity - 1)) {
+			cout << "Stack Overflow";
+			return false;
+		}
+		else {
+			int k;
+			l:
+			cout<<"            ENter Push Element k:";
+			cin>>k;
+			cout<<endl;
+			arr[++top] = k;
+			cout <<"        "<< k << " --pushed into stack\n";
+			int p;
+			cout<<"                                         want to add more : (y=0/n>0) p: ";
+			cin>>p;
+			if(p==0)
+			   goto l;
+			return true;
+		}
+	}
+	int pop()
+	{
+		if (top < 0) {
+				cout << "Stack Underflow";
+			return 0;
+		}
+		else {
+			int x = arr[top--];
+			return x;
+		}
+	}
+	bool isEmpty()
+	{
+		return (top < 0);
+	}
+	
+	
+};
+
+
+int main()
+{   
+    int n;
+    cout<<"Stack Size n : ";
+    cin>>n;
+    cout<<endl;
+	Stack s(n);
+	
+	int x;
+	y:
+	cout<<"                           Enter 1. Push [Add Element] ."<<endl;
+	cout<<"                           Enter 2. Pop [Delete ] ."<<endl;
+	cout<<"                           Enter 3. Print Stack ."<<endl;
+	cout<<"                              x :";
+	cin>>x;
+	if (x==1)
+		s.push();
+	if (x==2)
+		s.pop();
+	if (x==3)
+	{
+		
+		cout << "Top element is : " << s.peek() << endl;
+	
+		 
+		cout<<"Elements present in stack : ";
+		while(!s.isEmpty())
+		{
+			
+			cout<<s.peek()<<" ";
+			
+			s.pop();
+		}
+	}
+		
+		
+	
+	if(x!=1 && x!=2 && x!=3)
+		cout<<"Invalid Input !! "<<endl;
+ 
+    int i;
+    cout<<endl
+	<<"                	                                                      Want to Continue : (y=0/n>0) i:";
+    cin>>i;
+    if (i==0)
+        goto y;
+    if (i!=0)
+       cout<<" !!!!!!!!!!!!!!!!!!!!!      Program Ends      !!!!!!!!!!!!!!!!!!!!!";
+    
+	
+	
+	
+	
+ 
+	return 0;
+}
