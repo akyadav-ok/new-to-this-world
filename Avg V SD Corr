@@ -14,7 +14,7 @@ class myarray
 			arr=new int[size];
 			ptr=new int[size];
 		}
-		int fill(int d)
+		int fill(int d)                                      
 		{   
 		   cout<<"Enter Array Elements :"<<endl;
 		   if(d==0)
