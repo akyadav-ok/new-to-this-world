@@ -131,10 +131,13 @@ class myarray
 					
 					     
 				
-				int then=arr[min_index];
-					arr[min_index]=arr[i];
-					arr[i]=then;
+				
 			}
+				int then=arr[min_index];
+				arr[min_index]=arr[i];
+				arr[i]=then;
+			
+			
 			cout<<endl;
 			cout<<"Sorted Array is :: ";
 			for (int n=0;n<size;n++)
