@@ -61,7 +61,7 @@ string InfixToPrefix(sStack c,string infix)
 		{
 			while((c.peek()!='(')&&(!c.isEmpty()))
 			{
-				
+				 
 				prefix+=c.peek();
 				c.pop();
 				
